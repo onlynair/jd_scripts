@@ -22,10 +22,10 @@ let QQ_MODE = 'send';
 // =======================================Bark App通知设置区域===========================================
 //此处填你BarkAPP的信息(IP/设备码，例如：https://api.day.app/XXXXXXXX)
 //注：此处设置github action用户填写到Settings-Secrets里面（Name输入BARK_PUSH）
-let BARK_PUSH = '';
+let BARK_PUSH = 'txKxdsEyTRqnwp55bRqhnT';
 //BARK app推送铃声,铃声列表去APP查看复制填写
 //注：此处设置github action用户填写到Settings-Secrets里面（Name输入BARK_SOUND , Value输入app提供的铃声名称，例如:birdsong）
-let BARK_SOUND = '';
+let BARK_SOUND = 'paymentsuccess';
 
 
 // =======================================telegram机器人通知设置区域===========================================
