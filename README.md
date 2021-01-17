@@ -1,3 +1,14 @@
+<div align="center"> 
+<h1 align="center">本仓库仅自用</h1>
+<img src="https://img.shields.io/github/issues/Volatile0/JD_Scripts?color=green">
+<img src="https://img.shields.io/github/stars/Volatile0/JD_Scripts?color=yellow">
+<img src="https://img.shields.io/github/forks/Volatile0/JD_Scripts?color=orange">
+<img src="https://img.shields.io/github/license/Volatile0/JD_Scripts?color=ff69b4">
+<img src="https://img.shields.io/github/languages/code-size/Volatile0/JD_Scripts?color=blueviolet">
+</div>
+
+ </div>
+
 ## 特别声明: 
 
 * 本仓库发布的Script项目中涉及的任何解锁和解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断.
@@ -174,9 +185,3 @@
 
 #京豆变动通知
 2 9 * * * https://raw.githubusercontent.com/Volatile0/JD_Scripts/master//jd_bean_change.js, tag=京豆变动通知, enabled=true
-
-#京东手机狂欢城
-1 0-18/6 * * * https://raw.githubusercontent.com/Volatile0/JD_Scripts/master//jd_818.js, tag=京东手机狂欢城, enabled=true
-
-#京东星推官
-2 0 * * * https://raw.githubusercontent.com/Volatile0/JD_Scripts/master//jd_xtg.js, tag=京东星推官, enabled=true
