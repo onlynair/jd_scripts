@@ -1,4 +1,4 @@
-name: repo_sync 部署到腾讯云函数
+name: 部署到腾讯云函数
 
 on:
   workflow_dispatch:
