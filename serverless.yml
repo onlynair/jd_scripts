@@ -52,18 +52,18 @@ inputs:
           cronExpression: "0 10 0 * * * *"
           enable: true
           argument: jd_redPacket&jd_shop&jd_unsubscribe&jd_unbind&jd_lotteryMachine&jd_small_home
-    - timer: #京东天天加速 #天天提鹅
+    - timer: #京东天天加速 #天天提鹅 #京喜财富岛 #京东炸年兽 #工业品爱消除 #京东爱消除
         parameters:
-          name: jd_speed_jd_daily_egg
+          name: jd_speed_jd_daily_egg_cfd_nian_gyec_xxl
           cronExpression: "0 8 */3 * * * *"
           enable: true
-          argument: jd_speed&jd_daily_egg
-    - timer: #东东超市 #京东家庭号 #京喜财富岛 #京东炸年兽 #工业品爱消除 #京东爱消除
+          argument: jd_speed&jd_daily_egg&jx_cfd&jd_nian&jd_gyec&jd_xxl
+    - timer: #东东超市 #京东家庭号
         parameters:
-          name: superMarket_family_cfd_nian_gyec_xxl
+          name: superMarket_family
           cronExpression: "0 15 * * * * *"
           enable: true
-          argument: jd_superMarket&jd_family&jx_cfd&jd_nian&jd_gyec&jd_xxl
+          argument: jd_superMarket&jd_family
     - timer: #京豆变动通知 #疯狂的joy #京东排行榜 #领京豆额外奖励 #京东年货节
         parameters:
           name: bean_change_crazy_joy_rankingList_bean_home_nh
