@@ -185,3 +185,4 @@
 
 #京豆变动通知
 2 9 * * * https://raw.githubusercontent.com/Volatile0/JD_Scripts/master//jd_bean_change.js, tag=京豆变动通知, enabled=true
+
