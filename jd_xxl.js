@@ -12,7 +12,7 @@
 ============Quantumultx===============
 [task_local]
 #东东爱消除
-0 * * * * https://raw.githubusercontent.com/shylocks/Loon/main/jd_gyec.js, tag=东东爱消除, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/main/Icon/shylocks/jd_xxl.jpg, enabled=true
+0 * * * * https://raw.githubusercontent.com/shylocks/Loon/main/jd_xxl.js, tag=东东爱消除, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/main/Icon/shylocks/jd_xxl.jpg, enabled=true
 
 ================Loon==============
 [Script]
@@ -229,6 +229,14 @@ function checkLogin() {
             console.log(`当前体力：${$.strength}`)
             // console.log(JSON.stringify(data))
             $.curLevel = data.role.gameInfo.levelId || 40103
+            $.not3Star = []
+            for(let level of data.role.allLevels){
+              if(level.maxStar!==3){
+                $.not3Star.push(level.id)
+              }
+            }
+            if($.not3Star.length)
+              console.log(`当前尚未三星的关卡为：${$.not3Star.join(',')}`)
             // SecrectUtil.InitEncryptInfo($.gameToken, $.gameId)
           }
         }
@@ -261,8 +269,16 @@ function getTaskList() {
                 if (task.res.sName === "闯关集星") {
                   $.level = task.state.value + 1
                   console.log(`当前关卡：${$.level}`)
-                  while ($.strength >= 5) {
+                  while ($.strength >= 5 && $.level <= 240) {
                     await beginLevel()
+                  }
+                  if($.not3Star.length){
+                    console.log(`去完成尚未三星的关卡`)
+                    for(let level of $.not3Star){
+                      $.level = parseInt(level)
+                      await beginLevel()
+                      if($.strength<5) break
+                    }
                   }
                 } else if (task.res.sName === "逛逛店铺") {
                   if (task.state.iFreshTimes < task.res.iFreshTimes)
@@ -393,9 +409,11 @@ function beginLevel() {
                 await $.wait(30000)
                 await endLevel()
               } else if (data.code === 20001) {
+                $.strength = 0
                 console.log(`关卡开启失败，体力不足`)
               } else {
-                console.log(`关卡开启失败，错误信息：${JSON.stringify(data)}`)
+                $.strength = 0
+                // console.log(`关卡开启失败，错误信息：${JSON.stringify(data)}`)
               }
             }
           }
@@ -515,7 +533,7 @@ function finishTask(taskId) {
                 }
                 console.log(msg)
               } else {
-                console.log(`任务完成失败，错误信息：${JSON.stringify(data)}`)
+                console.log(`暂无每日挑战任务`)
               }
             }
           }
