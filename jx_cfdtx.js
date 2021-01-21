@@ -2,7 +2,9 @@
 *
   Name:财富岛提现
   Address: 京喜App ====>>>> 全民赚大钱
-  Update: 2020/12/19 8:00
+  Author：MoPoQAQ
+  Update: 2021/1/21 12:00
+
   Thanks: 
     银河大佬：https://github.com/zbt494
   获取Token方式：
@@ -73,7 +75,7 @@ function cashOut() {
           $.log(data);
           const { iRet, sErrMsg } = JSON.parse(data);
           $.log(sErrMsg);
-          $.result.push(`【${$.userName}】\n ${sErrMsg}`);
+          $.result.push(`【${$.userName}】\n ${sErrMsg == "" ? sErrMsg="今天手气太棒了" : sErrMsg}`);
           resolve(sErrMsg);
         } catch (e) {
           $.logErr(e, resp);
@@ -106,7 +108,8 @@ function getCookies() {
   if ($.isNode()) {
     $.cookieArr = Object.values(jdCookieNode);
   } else {
-    $.cookieArr = [$.getdata("CookieJD") || "", $.getdata("CookieJD2") || ""];
+    const CookiesJd = JSON.parse($.getdata("CookiesJD") || "[]").filter(x => !!x).map(x => x.cookie);
+    $.cookieArr = [$.getdata("CookieJD") || "", $.getdata("CookieJD2") || "", ...CookiesJd];
   }
   if (!$.cookieArr[0]) {
     $.msg(
