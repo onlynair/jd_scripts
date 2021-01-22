@@ -38,14 +38,14 @@ cron "0 9,12,18 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_
 
 const $ = new Env('京喜农场');
 let notify = ''; // nodejs 发送通知脚本
-let notifyLevel = $.isNode() ? process.env.JXNC_NOTIFY_LEVEL || 3 : 3; // 通知级别 0=不通知;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子;
+let notifyLevel = $.isNode() ? process.env.JXNC_NOTIFY_LEVEL || 3 : 3; // 通知级别 0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子;
 let notifyBool = true; // 代码内部使用，控制是否通知
 let cookieArr = []; // 用户 cookie 数组
 let currentCookie = ''; // 当前用户 cookie
 let tokenNull = {'farm_jstoken': '', 'phoneid': '', 'timestamp': ''}; // 内置一份空的 token
 let tokenArr = []; // 用户 token 数组
 let currentToken = {}; // 当前用户 token
-const shareCode = '22bd6fbbabbaa770a45ab2607e7a1e8a@197c6094e965fdf3d33621b47719e0b1'; // 内置助力码
+let shareCode = ''; // 内置助力码
 let jxncShareCodeArr = []; // 用户 助力码 数组
 let currentShareCode = []; // 当前用户 要助力的助力码
 const openUrl = `openjd://virtual?params=${encodeURIComponent('{ "category": "jump", "des": "m", "url": "https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2"}',)}`; // 打开京喜农场
@@ -106,9 +106,20 @@ let assistUserShareCode = 0; // 随机助力用户 share code
         $.done();
     })
 
+// 检查互助码格式是否为 json
+// 成功返回 json 对象，失败返回 ''
+function changeShareCodeJson(code) {
+    try {
+        let json = code && JSON.parse(code);
+        return json['smp'] && json['active'] && json['joinnum'] ? json : '';
+    } catch (e) {
+        return '';
+    }
+}
+
 // 加载配置 cookie token shareCode
 function requireConfig() {
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
         $.log('开始获取配置文件\n')
         notify = $.isNode() ? require('./sendNotify') : '';
         //Node.js用户请在jdCookie.js处填写京东ck;
@@ -142,13 +153,52 @@ function requireConfig() {
             Object.keys(jdJxncShareCodeNode).forEach((item) => {
                 if (jdJxncShareCodeNode[item]) {
                     jxncShareCodeArr.push(jdJxncShareCodeNode[item])
+                } else {
+                    jxncShareCodeArr.push('');
                 }
             })
         }
 
-        // console.log(`jdFruitShareArr::${JSON.stringify(jdFruitShareArr)}`)
-        // console.log(`jdFruitShareArr账号长度::${jdFruitShareArr.length}`)
+        // 检查互助码是否为 json [smp,active,joinnum] 格式，否则进行通知
+        for (let i = 0; i < jxncShareCodeArr.length; i++) {
+            if (jxncShareCodeArr[i]) {
+                let tmpjsonShareCodeArr = jxncShareCodeArr.splice('@');
+                if (!changeShareCodeJson(tmpjsonShareCodeArr[0])) {
+                    $.log('互助码格式已变更，请重新填写互助码');
+                    $.msg($.name, '互助码格式变更通知', '互助码格式变更，请重新填写 ‼️‼️', option);
+                    if ($.isNode()) {
+                        await notify.sendNotify(`${$.name}`, `互助码格式变更，请重新填写 ‼️‼️`);
+                    }
+                }
+                break;
+            }
+        }
+
+        // console.log(`jdFruitShareArr::${JSON.stringify(jxncShareCodeArr)}`)
+        // console.log(`jdFruitShareArr账号长度::${jxncShareCodeArr.length}`)
         $.log(`您提供了${jxncShareCodeArr.length}个账号的京喜农场助力码`);
+
+        try {
+            let options = {
+                "url": `https://gitee.com/guyuexuan/jd_share_code/raw/master/share_code/jxnc.json`,
+                "headers": {
+                    "Accept": "application/json,text/plain, */*",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Accept-Encoding": "gzip, deflate, br",
+                    "Accept-Language": "zh-cn",
+                    "Connection": "keep-alive",
+                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
+                },
+                "timeout": 10000,
+            }
+            $.get(options, (err, resp, data) => { // 初始化内置变量
+                if (!err) {
+                    shareCode = data;
+                }
+            });
+        } catch (e) {
+            // 获取内置助力码失败
+        }
         resolve()
     })
 }
@@ -227,36 +277,43 @@ async function jdJXNC() {
     subTitle = `【京东账号${$.index}】${$.nickName}`;
     $.log(`获取用户信息 & 任务列表`);
     const startInfo = await getTaskList();
-    if (startInfo.prizename) {
-        message += `【水果名称】${startInfo.prizename}\n`;
-    }
     if (startInfo) {
-        $.log(`【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】 ${$.info.smp}`);
-        $.log(`【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}种子active】 ${$.info.active}`);
-        await $.wait(500);
-        const isOk = await browserTask();
-        if (isOk) {
+        message += `【水果名称】${startInfo.prizename}\n`;
+        if (startInfo.target <= startInfo.score) {
+            notifyBool = true;
+            message += `【成熟】水果已成熟请及时收取，deliverState：${startInfo.deliverState}\n`;
+        } else {
+            let shareCodeJson = {
+                "smp": $.info.smp,
+                "active": $.info.active,
+                "joinnum": $.info.joinnum,
+            };
+            $.log(`【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】` + JSON.stringify(shareCodeJson));
             await $.wait(500);
-            await answerTask();
-            await $.wait(500);
-            const endInfo = await getTaskList();
-            getMessage(endInfo, startInfo);
-            await submitInviteId($.UserName);
-            await $.wait(500);
-            let next = await helpFriends();
-            if (next) {
-                while ($.helpNum < $.maxHelpNum) {
-                    $.helpNum++;
-                    assistUserShareCode = await getAssistUser();
-                    if (assistUserShareCode) {
-                        await $.wait(300);
-                        next = await helpShareCode(assistUserShareCode);
-                        if (next) {
-                            await $.wait(200);
-                            continue;
+            const isOk = await browserTask();
+            if (isOk) {
+                await $.wait(500);
+                await answerTask();
+                await $.wait(500);
+                const endInfo = await getTaskList();
+                getMessage(endInfo, startInfo);
+                await submitInviteId($.UserName);
+                await $.wait(500);
+                let next = await helpFriends();
+                if (next) {
+                    while ($.helpNum < $.maxHelpNum) {
+                        $.helpNum++;
+                        assistUserShareCodeJson = await getAssistUser();
+                        if (assistUserShareCodeJson) {
+                            await $.wait(500);
+                            next = await helpShareCode(assistUserShareCodeJson['smp'], assistUserShareCodeJson['active'], assistUserShareCodeJson['joinnum']);
+                            if (next) {
+                                await $.wait(1000);
+                                continue;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -356,7 +413,9 @@ function answerTask() {
                     if (ret === 0 && right === 1) {
                         $.drip += eachtimeget;
                     }
-                    if (ret === 1017) { // ret:1017 retmsg:"score full" 水滴已满，果实成熟，跳过答题
+                    // ret:1017 retmsg:"score full" 水滴已满，果实成熟，跳过答题
+                    // ret:1012 retmsg:"has complte" 已完成，跳过答题
+                    if (ret === 1017 || ret === 1012) {
                         resolve();
                         return;
                     }
@@ -391,7 +450,7 @@ function getMessage(endInfo, startInfo) {
     message += `【水滴】本次获得${get} 离线获得${leaveGet} 今日获得${dayGet} 还需水滴${need}\n`;
     if (need <= 0) {
         notifyBool = true;
-        message += `【成熟】水果已成熟请及时收取\n`;
+        message += `【成熟】水果已成熟请及时收取，deliverState：${endInfo.deliverState}\n`;
         return;
     }
     if (get > 0 || leaveGet > 0 || dayGet > 0) {
@@ -415,7 +474,7 @@ function submitInviteId(userName) {
         try {
             $.post(
                 {
-                    url: `https://api.ninesix.cc/api/jx-nc/${$.info.smp}/${encodeURIComponent(userName)}?active=${$.info.active}`,
+                    url: `https://api.ninesix.cc/api/jx-nc/${$.info.smp}/${encodeURIComponent(userName)}?active=${$.info.active}&joinnum=${$.info.joinnum}`,
                     timeout: 10000
                 },
                 (err, resp, _data) => {
@@ -445,10 +504,16 @@ function getAssistUser() {
         try {
             $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 10000}, async (err, resp, _data) => {
                 try {
-                    const {code, data = {}} = JSON.parse(_data);
-                    if (data.value) {
-                        $.log(`获取随机助力码成功 ${code} ${data.value}`);
-                        resolve(data.value);
+                    const {code, data: {value, extra = {}} = {}} = JSON.parse(_data);
+                    if (value && extra.active) { //  && extra.joinnum 截止 2021-01-22 16:39:09 API 线上还未部署新的 joinnum 参数代码，暂时默认 1 兼容
+                        let shareCodeJson = {
+                            'smp': value,
+                            'active': extra.active,
+                            'joinnum': extra.joinnum || 1
+                        };
+                        $.log(`获取随机助力码成功 ` + JSON.stringify(shareCodeJson));
+                        resolve(shareCodeJson);
+                        return;
                     } else {
                         $.log(`获取随机助力码失败 ${code}`);
                     }
@@ -472,24 +537,30 @@ async function helpFriends() {
         if (!code) {
             continue
         }
-        const next = await helpShareCode(code);
+        let tmpShareCodeJson = changeShareCodeJson(code);
+        if (!tmpShareCodeJson) { //非 json 格式跳过
+            console.log('助力码非 json 格式，跳过')
+            continue;
+        }
+        const next = await helpShareCode(tmpShareCodeJson['smp'], tmpShareCodeJson['active'], tmpShareCodeJson['joinnum']);
         if (!next) {
             return false;
         }
+        await $.wait(1000);
     }
     return true;
 }
 
 // 执行助力 return true 继续助力  false 助力结束
-function helpShareCode(code) {
+function helpShareCode(smp, active, joinnum) {
     return new Promise(async resolve => {
-        if (code === $.info.smp) { // 自己的助力码，跳过，继续执行
+        if (smp === $.info.smp) { // 自己的助力码，跳过，继续执行
             $.log('助力码与当前账号相同，跳过助力。准备进行下一个助力');
             resolve(true);
         }
-        $.log(`即将助力 share code：${code}`);
+        $.log(`即将助力 share {"smp":"${smp}","active":"${active}","joinnum":"${joinnum}"}`);
         $.get(
-            taskUrl('help', `active=${$.info.active}&joinnum=${$.info.joinnum}&smp=${code}`),
+            taskUrl('help', `active=${active}&joinnum=${joinnum}&smp=${smp}`),
             async (err, resp, data) => {
                 try {
                     const res = data.match(/try\{whyour\(([\s\S]*)\)\;\}catch\(e\)\{\}/)[1];
@@ -498,10 +569,16 @@ function helpShareCode(code) {
                     // ret=0 助力成功
                     // ret=1021 cannot help self 不能助力自己
                     // ret=1011 active 不同
-                    if (ret === 0 || ret === 1021 || ret === 1011) { // 0 助力成功
+                    // ret=1009 retmsg="today has help p2p" 今天已助力过
+                    if (ret === 0 || ret === 1009 || ret === 1021 || ret === 1011) { // 0 助力成功
                         resolve(true);
+                        return;
                     }
                     // ret 1016 助力上限
+                    // ret 147 filter 当前账号黑号了
+                    if (ret === 147) {
+                        $.log(`\n\n  !!!!!!!!   当前账号黑号了  !!!!!!!!  \n\n`);
+                    }
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
