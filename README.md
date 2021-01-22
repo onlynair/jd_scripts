@@ -1,5 +1,5 @@
 <div align="center"> 
-<h1 align="center">本仓库仅自用</h1>
+<h1 align="center">腾讯云函数专用</h1>
 <img src="https://img.shields.io/github/issues/Volatile0/JD_Scripts?color=green">
 <img src="https://img.shields.io/github/stars/Volatile0/JD_Scripts?color=yellow">
 <img src="https://img.shields.io/github/forks/Volatile0/JD_Scripts?color=orange">
