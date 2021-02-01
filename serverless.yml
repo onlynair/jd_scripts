@@ -16,15 +16,15 @@ inputs:
   memorySize: 128 # 内存大小，单位MB
   timeout: 900 # 超时时间，单位秒
   events: # 触发器
-    - timer: # 签到
+    - timer: #签到 #源头好物红包 #京东超级盒子
         parameters:
-          name: jd_bean_sign
+          name: beansign_coupon_superbox
           cronExpression: "0 0 0 * * * *"
           enable: true
-          argument: jd_bean_sign
-    - timer: #京小超兑换奖品 #摇京豆 #京东汽车 #京东汽车兑换 #财富岛提现
+          argument: jd_bean_sign&jd_coupon&jd_super_box
+    - timer: #财富岛提现 #摇京豆 #京东汽车 #京东汽车兑换 #东东超市兑换奖品
         parameters:
-          name: jd_buleCoin_jd_club_lottery_car_car_exchange_cfdtx
+          name: jd_cfdtx_jd_club_lottery_car_car_exchange_buleCoin
           cronExpression: "0 0 0 * * * *"
           enable: true
           argument: jd_cfdtx&jd_club_lottery&jd_car&jd_car_exchange&jx_blueCoin
