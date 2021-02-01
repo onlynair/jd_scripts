@@ -3,8 +3,9 @@
 本脚本搬运自 https://github.com/whyour/hundun/blob/master/quanx/jx_nc.js
 感谢 @whyour 大佬
 
-京喜农场:脚本更新地址 https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js
+京喜农场:脚本更新地址 https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxnc.js
 更新时间：2021-01-10 22:47:51
+活动入口：京喜APP我的-京喜农场
 东东农场活动链接：https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2
 已支持IOS双京东账号,Node.js支持N个京东账号
 理论上脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
@@ -14,21 +15,21 @@ hostname = wq.jd.com
 
 ==========================Quantumultx=========================
 [task_local]
-0 9,12,18 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js, tag=京喜农场, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxnc.png, enabled=true
+0 9,12,18 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxnc.js, tag=京喜农场, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxnc.png, enabled=true
 [rewrite_local]
 # 京喜农场APP种子Token
 ^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js
 =========================Loon=============================
 [Script]
 http-request ^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js, requires-body=false, timeout=3600, tag=京喜农场cookie
-cron "0 9,12,18 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js,tag=京喜农场
+cron "0 9,12,18 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxnc.js,tag=京喜农场
 
 =========================Surge============================
-京喜农场 = type=cron,cronexp="0 9,12,18 * * *",timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js
+京喜农场 = type=cron,cronexp="0 9,12,18 * * *",timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxnc.js
 京喜农场cookie = type=http-request,pattern=^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask,requires-body=0,max-size=0,script-path= https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js
  
 =========================小火箭===========================
-京喜农场 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js, cronexpr="0 9,12,18 * * *", timeout=3600, enable=true
+京喜农场 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxnc.js, cronexpr="0 9,12,18 * * *", timeout=3600, enable=true
 京喜农场APP种子cookie = type=http-request,script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js,pattern=^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask,max-size=131072,timeout=3600,enable=true
 
 特别说明：
@@ -162,7 +163,8 @@ function requireConfig() {
         // 检查互助码是否为 json [smp,active,joinnum] 格式，否则进行通知
         for (let i = 0; i < jxncShareCodeArr.length; i++) {
             if (jxncShareCodeArr[i]) {
-                let tmpjsonShareCodeArr = jxncShareCodeArr.splice('@');
+                let tmpJxncShareStr = jxncShareCodeArr[i];
+                let tmpjsonShareCodeArr = tmpJxncShareStr.split('@');
                 if (!changeShareCodeJson(tmpjsonShareCodeArr[0])) {
                     $.log('互助码格式已变更，请重新填写互助码');
                     $.msg($.name, '互助码格式变更通知', '互助码格式变更，请重新填写 ‼️‼️', option);
@@ -567,18 +569,27 @@ function helpShareCode(smp, active, joinnum) {
                     const {ret, retmsg = ''} = JSON.parse(res);
                     $.log(`助力结果：ret=${ret} retmsg="${retmsg ? retmsg : 'OK'}"`);
                     // ret=0 助力成功
-                    // ret=1021 cannot help self 不能助力自己
                     // ret=1011 active 不同
+                    // ret=1012 has complete 已完成
+                    // ret=1013 retmsg="has expired" 已过期
                     // ret=1009 retmsg="today has help p2p" 今天已助力过
-                    if (ret === 0 || ret === 1009 || ret === 1021 || ret === 1011) { // 0 助力成功
-                        resolve(true);
+                    // ret=1021 cannot help self 不能助力自己
+                    // ret=1032 retmsg="err operate env" 被助力者为 APP 专属种子，当前助力账号未配置 TOKEN
+                    // if (ret === 0 || ret === 1009 || ret === 1011 || ret === 1012 || ret === 1021 || ret === 1032) {
+                    //     resolve(true);
+                    //     return;
+                    // }
+                    // ret 1016 当前账号达到助力上限
+                    // ret 147 filter 当前账号黑号了
+                    if (ret === 147 || ret === 1016) {
+                        if (ret === 147) {
+                            $.log(`\n\n  !!!!!!!!   当前账号黑号了  !!!!!!!!  \n\n`);
+                        }
+                        resolve(false);
                         return;
                     }
-                    // ret 1016 助力上限
-                    // ret 147 filter 当前账号黑号了
-                    if (ret === 147) {
-                        $.log(`\n\n  !!!!!!!!   当前账号黑号了  !!!!!!!!  \n\n`);
-                    }
+                    resolve(true);
+                    return;
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
