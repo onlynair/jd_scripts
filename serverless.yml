@@ -22,12 +22,12 @@ inputs:
           cronExpression: "0 0 0 * * * *"
           enable: true
           argument: jd_bean_sign&jd_coupon&jd_super_box
-    - timer: #财富岛提现 #摇京豆 #京东汽车 #京东汽车兑换 #东东超市兑换奖品
+    - timer: #东东超市兑换奖品 #摇京豆 #京东汽车 #京东汽车兑换 #财富岛提现
         parameters:
-          name: jd_cfdtx_jd_club_lottery_car_car_exchange_buleCoin
+          name: jd_blueCoin_jd_club_lottery_car_car_exchange_cfdtx
           cronExpression: "0 0 0 * * * *"
           enable: true
-          argument: jd_cfdtx&jd_club_lottery&jd_car&jd_car_exchange&jx_blueCoin
+          argument: jd_blueCoin&jd_club_lottery&jd_car&jd_car_exchange&jx_cfdtx
     - timer: #东东农场 #东东萌宠 #口袋书店 #京喜农场
         parameters:
           name: jd_fruit_jd_pet_bookshop_jxnc
@@ -64,12 +64,12 @@ inputs:
           cronExpression: "0 15 * * * * *"
           enable: true
           argument: jd_superMarket&jd_immortal&jd_immortal_answer
-    - timer: #京豆变动通知 #疯狂的joy #京东排行榜 #领京豆额外奖励 #京东年货节
+    - timer: #京豆变动通知 #疯狂的joy #京东排行榜 #领京豆额外奖励
         parameters:
-          name: bean_change_crazy_joy_rankingList_bean_home_nh
+          name: bean_change_crazy_joy_rankingList_bean_home
           cronExpression: "0 30 7 * * * *"
           enable: true
-          argument: jd_bean_change&jd_crazy_joy&jd_rankingList&jd_bean_home&jd_car&jd_nh
+          argument: jd_bean_change&jd_crazy_joy&jd_rankingList&jd_bean_home&jd_car
     - timer: #金融养猪 #十元街 #京东快递 #京东赚赚 #签到领现金 #京喜签到
         parameters:
           name: pigPet_syj_kd_jdzz_cash_sign
