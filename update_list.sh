@@ -8,7 +8,7 @@
 WorkDir=$(cd $(dirname $0); pwd)
 JsList=($(cd $WorkDir; ls *.js | grep -E "j[drx]_"))
 FileReadme=$WorkDir/README.md
-UrlRaw=https://gitee.com/lxk0301/jd_scripts/raw/master/
+UrlRaw=https://raw.githubusercontent.com/onlynair/scripts/master/
 SheetHead="| 序号 | 文件 | 名称 | 活动入口 |\n| :-: | - | - | - |"
 
 ## 删除标记行的内容
