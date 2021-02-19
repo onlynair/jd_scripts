@@ -39,7 +39,7 @@ inputs:
           name: joy_feedPets_joy_moneyTree_plantBean_jdfactory
           cronExpression: "0 3 */1 * * * *"
           enable: true
-          argument: jd_joy_feedPets&jd_joy&jd_moneyTree&jd_plantBean&jd_dreamFactory&jd_jdfactory
+          argument: jd_joy_feedPets&jd_joy&jd_moneyTree&jd_plantBean&jd_jdfactory
     - timer: # 宠汪汪积分兑换奖品# 宠汪汪偷好友积分与狗# 点点券# 京东直播18豆
         parameters:
           name: joy_reward_joy_steal_necklace_live
