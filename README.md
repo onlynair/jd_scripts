@@ -106,24 +106,44 @@
 - [获取各类活动互助码脚本 jd_get_share_code.js](https://gitee.com/lxk0301/jd_scripts/raw/master/jd_get_share_code.js)
 
 - [邀请码使用规范](githubAction.md#互助码类环境变量)(仅限云端)
-
 ## 食用方法
 
-### 1. Docker
+### 方法一：本地安装Node.js，下载本库脚本
 
-- [部署方法](./docker)
+  - 教程请见：[EvineDeng/jd-base](https://github.com/EvineDeng/jd-base)，适用于以下系统：
 
-- [环境变量集合](./githubAction.md)
+    1. Armbian/OpenWrt/Debian/Ubuntu/CentOS/Fedora/RedHat等Linux系统
+
+    2. Android
+
+    3. MacOS
+
+### 方法二：云服务器、腾讯云函数等等
+
+  - 需自行有云服务器，云函数等
+  - 腾讯云云函数 [快速部署教程](./backUp/tencentscf.md)（免费）
+  - 腾讯云云函数控制台使用 [教程说明](./backUp/iCloud.md)
+  - 腾讯云云函数 [GitHub Action部署教程](./backUp/tencentscf.md#github-action-部署)
+       
  
-- 获取京东cookie教程可参考：
-  
-  + [浏览器获取京东cookie教程](./backUp/GetJdCookie.md)
-    
-  + [插件获取京东cookie教程](./backUp/GetJdCookie2.md)
-    
-  + 京东APP扫码获取cookie(此种方式获取的cookie有效期为90天)(执行`node getJDCookie.js`即可)
+### 方法三：Docker（NAS或VPS用户）
 
-### 2. iOS代理软件（QuantumultX, Surge, Loon, 小火箭）
+ - 可以精确控制任务运行时间，有二种办法：[docker办法一](https://github.com/onlynair/scripts/tree/master/docker)、[docker办法二（和本地安装Node.js类似）](https://github.com/EvineDeng/jd-base)
+ - [环境变量集合](https://github.com/onlynair/scripts/blob/master/githubAction.md)
+ 
+#### 注：以上三种运行机制都是Node.js，故您需仔细阅读下面几点
+
+
+  - 如果使用方法一与方法二，需自行提供京东cookie填写到 [jdCookie.js](https://github.com/onlynair/scripts/blob/master/jdCookie.js) 里面
+
+   
+  - 获取京东cookie教程可参考 [浏览器获取京东cookie教程](https://github.com/onlynair/scripts/blob/master/backUp/GetJdCookie.md) , [插件获取京东cookie教程](https://github.com/onlynair/scripts/blob/master/backUp/GetJdCookie2.md)
+
+  - 京东APP扫码获取cookie(此种方式获取的cookie有效期为90天)(执行`node getJDCookie.js`即可)
+    
+  - 方法三Docker安装Cookie请见各自的说明。
+
+### 方法四：iOS系统的代理软件（QuantumultX, Surge, Loon, 小火箭）
 
 ##### BoxJs订阅地址：[lxk0301.boxjs.json](https://gitee.com/lxk0301/jd_scripts/raw/master/lxk0301.boxjs.json)
 
