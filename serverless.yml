@@ -52,24 +52,24 @@ inputs:
           cronExpression: "0 10 0 * * * *"
           enable: true
           argument: jd_redPacket&jd_shop&jd_unsubscribe&jd_unbind&jd_lotteryMachine&jd_car
-    - timer: #京东天天加速 #天天提鹅 #东东超市 #京喜财富岛  #京东极速版
+    - timer: #京东天天加速 #天天提鹅 #东东超市 #京喜财富岛
         parameters:
-          name: jd_speed_jd_daily_egg_superMarket_cfd_speed_sign
+          name: jd_speed_jd_daily_egg_superMarket_cfd
           cronExpression: "0 8 */3 * * * *"
           enable: true
-          argument: jd_speed&jd_daily_egg&jd_superMarket&jx_cfd&jd_speed_sign
+          argument: jd_speed&jd_daily_egg&jd_superMarket&jx_cfd
     - timer: #财富岛提现
         parameters:
           name: cfdtx
           cronExpression: "59 59 23 * * * *"
           enable: true
           argument: jx_cfdtx
-    - timer: #京豆变动通知 #疯狂的joy #京东排行榜 #领京豆额外奖励
+    - timer: #京豆变动通知 #疯狂的joy #京东排行榜 #领京豆额外奖励 #京东极速版
         parameters:
-          name: bean_change_crazy_joy_rankingList_bean_home
+          name: bean_change_crazy_joy_rankingList_bean_home_speed_sign
           cronExpression: "0 30 7 * * * *"
           enable: true
-          argument: jd_bean_change&jd_crazy_joy&jd_rankingList&jd_bean_home
+          argument: jd_bean_change&jd_crazy_joy&jd_rankingList&jd_bean_home&jd_speed_sign
     - timer: #金融养猪 #十元街 #京东快递 #京东赚赚 #签到领现金 #京喜签到
         parameters:
           name: pigPet_syj_kd_jdzz_cash_sign
