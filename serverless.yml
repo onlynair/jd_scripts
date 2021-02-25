@@ -52,12 +52,12 @@ inputs:
           cronExpression: "0 10 0 * * * *"
           enable: true
           argument: jd_redPacket&jd_shop&jd_unsubscribe&jd_unbind&jd_lotteryMachine&jd_car
-    - timer: #京东天天加速 #天天提鹅 #东东超市 #京喜财富岛 
+    - timer: #京东天天加速 #天天提鹅 #东东超市 #京喜财富岛  #京东极速版
         parameters:
-          name: jd_speed_jd_daily_egg_superMarket_cfd
+          name: jd_speed_jd_daily_egg_superMarket_cfd_speed_sign
           cronExpression: "0 8 */3 * * * *"
           enable: true
-          argument: jd_speed&jd_daily_egg&jd_superMarket&jx_cfd
+          argument: jd_speed&jd_daily_egg&jd_superMarket&jx_cfd&jd_speed_sign
     - timer: #财富岛提现
         parameters:
           name: cfdtx
