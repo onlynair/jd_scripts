@@ -57,7 +57,7 @@ inputs:
           name: jd_speed_jd_daily_egg_superMarket_cfd
           cronExpression: "0 8 */3 * * * *"
           enable: true
-          argument: jd_speed&jd_daily_egg&jd_superMarket&jx_cfd
+          argument: jd_speed&jd_daily_egg&jd_superMarket&jd_cfd
     - timer: #财富岛提现
         parameters:
           name: cfdtx
