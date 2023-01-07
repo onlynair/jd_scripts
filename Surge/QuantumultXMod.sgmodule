@@ -1,3 +1,7 @@
+#!name=QuantumultXMod
+#!desc=QuanX脚本转换成Surge格式
+#!system=ios
+
 [Script]
 QX转换 = type=http-request,pattern=qx$,requires-body=1,max-size=0,script-path=QX转换.js
 
