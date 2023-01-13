@@ -19,7 +19,7 @@ tiles:
     interval: 300
     title: "联通余量"
     content: ""
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/10010.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10010.png"
     backgroundColor: "#663399"
 
 cron:
