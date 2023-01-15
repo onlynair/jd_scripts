@@ -1,17 +1,20 @@
 name: Emby Premiere
 desc: Emby Premiere Unlock
 
+
 http:
+
+  script:
+
+    - match: ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice
+      name: EmbyPremiere
+      type: response
+      timeout: 30
+      require-body: true
+      max-size: 3145728
+
   mitm:
     - "mb3admin.com"
-
-script:
-  - match: ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice
-    name: EmbyPremiere
-    type: response
-    timeout: 30
-    require-body: true
-    max-size: 3145728
 
 script-providers:
   EmbyPremiere:
