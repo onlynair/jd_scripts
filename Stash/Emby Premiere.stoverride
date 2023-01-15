@@ -1,0 +1,17 @@
+name: Emby Premiere
+desc: Emby Premiere Unlock
+
+http:
+ script:
+    - match: ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice
+      name: EmbyPremiere
+      type: response
+      timeout: 30
+      require-body: true
+      max-size: 3145728
+  mitm:
+    - "mb3admin.com"
+script-providers:
+  EmbyPremiere:
+    url: https://raw.githubusercontent.com/rartv/SurgeScript/main/EmbyPremiere/EmbyPremiere.js
+    interval: 86400
