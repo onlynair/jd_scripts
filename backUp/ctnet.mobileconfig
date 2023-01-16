@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>APNs</key>
+            <array>
+                <dict>
+                    <key>AllowedProtocolMask</key>
+                    <integer>1</integer>
+                    <key>AllowedProtocolMaskInRoaming</key>
+                    <integer>1</integer>
+                    <key>DefaultProtocolMask</key>
+                    <integer>1</integer>
+                    <key>Name</key>
+                    <string>ctnet</string>
+                </dict>
+            </array>
+            <key>PayloadDescription</key>
+            <string>配置蜂窝移动数据设置</string>
+            <key>PayloadDisplayName</key>
+            <string>蜂窝移动网络</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.cellular.C5DA0FD0-DE8B-4671-83AA-03BEC79339A2</string>
+            <key>PayloadType</key>
+            <string>com.apple.cellular</string>
+            <key>PayloadUUID</key>
+            <string>C5DA0FD0-DE8B-4671-83AA-03BEC79339A2</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>屏蔽电信IPv6，卸载重启即可恢复。</string>
+    <key>PayloadDisplayName</key>
+    <string>APN Carrier Settings</string>
+    <key>PayloadIdentifier</key>
+    <string>CoandadeMacBook-Air.280BC1DD-C658-4350-8040-A3A31C13AFB0</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>93AD79CC-EBB8-4B95-B546-EA7D5513C141</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
