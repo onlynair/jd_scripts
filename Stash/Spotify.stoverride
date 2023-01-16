@@ -1,0 +1,20 @@
+name: Spotify
+desc: Spotify P
+http:
+
+  script:
+    - match: ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$
+      name: spotify-proto_4
+      type: response
+      timeout: 30
+      require-body: true
+      max-size: 3145728
+      binary-mode: true
+
+  mitm:
+    - "spclient.wg.spotify.com"
+
+script-providers:
+  spotify-proto_4:
+    url: https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js
+    interval: 86400
