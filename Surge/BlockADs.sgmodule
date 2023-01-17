@@ -1,3 +1,5 @@
+#!name=Block ADs
+#!desc=去广告规则集
 
 [Rule]
 # > 去广告
