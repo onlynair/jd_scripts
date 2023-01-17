@@ -1,3 +1,5 @@
+
+[Rule]
 # > 去广告
 # DOMAIN-SET,https://cdn.jsdelivr.net/gh/ privacy-protection-tools/anti-AD@master/anti-ad-surge2.txt,REJECT
 RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt,REJECT
