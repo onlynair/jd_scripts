@@ -17,7 +17,7 @@ http:
       max-size: 3145728
 
     - match: ^http:\/\/quark\.example\.com
-      name: 夸克
+      name: 夸克挂载
       type: request
       timeout: 30
       require-body: true
@@ -32,11 +32,11 @@ http:
 
 script-providers:
   阿里云挂载:
-    url: 阿里云挂载.js
+    url: https://raw.githubusercontent.com/githubdulong/Script/master/ali.js
     interval: 86400
-  夸克:
-    url: 夸克.js
+  夸克挂载:
+    url: https://raw.githubusercontent.com/githubdulong/Script/master/quark.js
     interval: 86400
   pikpak挂载:
-    url: pikpak挂载.js
+    url: https://raw.githubusercontent.com/githubdulong/Script/master/pikpak.js
     interval: 86400
