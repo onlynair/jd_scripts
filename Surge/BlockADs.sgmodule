@@ -8,8 +8,12 @@ RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/mast
 # >Block In Apps+Website Trackers
 DOMAIN-SET,https://raw.githubusercontent.com/QiongBan/Surge/main/Reject_In_APP_Trackers.list,REJECT
 DOMAIN-SET,https://raw.githubusercontent.com/QiongBan/Surge/main/Reject_Website_Trackers.list,REJECT
+# > 广告拦截
+DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,REJECT
 # >隐私保护
 DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy_Domain.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list,REJECT
 # > 防劫持
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Download/Download.list,DIRECT
