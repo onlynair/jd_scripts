@@ -1,0 +1,11 @@
+# > 去广告
+# DOMAIN-SET,https://cdn.jsdelivr.net/gh/ privacy-protection-tools/anti-AD@master/anti-ad-surge2.txt,REJECT
+RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt,REJECT
+# >Block In Apps+Website Trackers
+DOMAIN-SET,https://raw.githubusercontent.com/QiongBan/Surge/main/Reject_In_APP_Trackers.list,REJECT
+DOMAIN-SET,https://raw.githubusercontent.com/QiongBan/Surge/main/Reject_Website_Trackers.list,REJECT
+# >隐私保护
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy_Domain.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list,REJECT
+# > 防劫持
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list,REJECT
