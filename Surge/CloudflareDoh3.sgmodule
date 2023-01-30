@@ -1,0 +1,12 @@
+#!name=Cloudflare Doh3
+#!desc=
+[General]
+encrypted-dns-server = h3://dns.cloudflare.com/dns-query
+encrypted-dns-follow-outbound-mode = true
+encrypted-dns-skip-cert-verification = true
+
+[Rule]
+DOMAIN,dns.cloudflare.com,DIRECT
+
+[Host]
+dns.cloudflare.com = 104.29.64.33
