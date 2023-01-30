@@ -1,5 +1,5 @@
 #!name=Cloudflare Doh3
-#!desc=
+#!desc=用上优选ip的cloudflare doh3
 [General]
 encrypted-dns-server = h3://dns.cloudflare.com/dns-query
 encrypted-dns-follow-outbound-mode = true
