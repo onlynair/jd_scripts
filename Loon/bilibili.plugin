@@ -1,7 +1,7 @@
 #!name=哔哩哔哩Mod
 #!desc=解锁高画质 魔改皮肤
 #!icon=https://raw.githubusercontent.com/chengkongyiban/StickerOnScreen/main/Stickers/Sticker_1108.png
-
+#!author=Krylov
 [MITM]
 hostname = *.hdslb.com,app.bilibili.com,api.live.bilibili.com,api.vc.bilibili.com,api.bilibili.com,manga.bilibili.com,grpc.biliapi.net,api.biliapi.net,-broadcast.chat.bilibili.com,-*cdn*.biliapi.net,-*tracker*.biliapi.net,upos-hz-mirrorakam.akamaized.net
 
