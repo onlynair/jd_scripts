@@ -4,7 +4,7 @@ desc: 电信免流跳点通知
 
 tiles:
   - name: Telecom_Auto
-    title: 今日免流信息
+    title: '今日免流信息'
     content: ''
     backgroundColor: "#93C0F2"
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png"
