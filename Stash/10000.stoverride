@@ -5,7 +5,7 @@ desc: 电信免流跳点通知
 cron:
   script:
     - name: Telecom_Auto
-      cron: '*/5 * * * *' # at every 5th minute
+      cron: '*/30 * * * *' # at every 5th minute
       timeout: 10 # optional
       #debug: true
 
