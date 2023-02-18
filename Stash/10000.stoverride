@@ -2,14 +2,6 @@ name: 电信余量
 desc: 电信免流跳点通知
 #请在BoxJS中安装https://raw.githubusercontent.com/QGCliveDavis/Module/main/Telecom/Tele.json,进行后续配置
 
-tiles:
-  - name: Telecom_Auto
-    title: '今日免流信息'
-    content: ''
-    backgroundColor: "#93C0F2"
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png"
-    interval: 300
-
 cron:
   script:
     - name: Telecom_Auto
@@ -18,5 +10,5 @@ cron:
 
 script-providers:
   Telecom_Auto:
-    url: https://raw.githubusercontent.com/QGCliveDavis/Module/main/Telecom/Tele_Cellular_Auto.js
+    url: https://raw.githubusercontent.com/onlynair/jd_scripts/master/Stash/telecom.js
     interval: 86400
