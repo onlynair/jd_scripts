@@ -24,9 +24,9 @@ const Tele_AutoCheck_unlimittoday=`Tele_AutoCheck.unlimittoday`
 
 !(async () => {
     let panel = {
-        title: '今日免流信息',
+        title: '电信余量',
         content: '',
-        backgroundColor: "#93C0F2",
+        backgroundColor: "#4F9BFA",
         icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
         interval: 300,
     }
