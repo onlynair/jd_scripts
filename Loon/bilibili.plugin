@@ -39,8 +39,6 @@ http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path=htt
 
 # ～ BiliBili_哔哩哔哩_我的页面处理@ddgksf2013
 #http-response ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine script-path=https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js, requires-body=true, tag=bilibili_json
-# ～ BiliBili_哔哩哔哩_1080P高码率+4K画质(番剧和影视除外)@ddgksf2013
-#http-response ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\? script-path=https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js, requires-body=true, tag=bilibili_json
 #魔改皮肤 作者@ClydeTime
 http-response ^https?:\/\/ap(i|p)\.bilibili\.com\/x\/(vip|v2|resource)\/(space|account|web|price|top_panel_info|show)(\/|\?)(mine|myinfo|access|vip_center|panel|_bridge|skin\?).* script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/BiliBili/bili_info.js, requires-body=true, tag=魔改皮肤
 
@@ -64,8 +62,3 @@ http-response ^https:\/\/app\.bilibili\.com\/bilibili\.app\.(view\.v1\.View\/Vie
 
 # ～ BiliBili_哔哩哔哩_繁体CC字幕转中文简体@ddgksf2013
 http-response ^https?:\/\/i.\.hdslb\.com\/bfs\/subtitle\/.+\.json$ script-path=https://github.com/ddgksf2013/Scripts/raw/master/bilibili_cc.js, requires-body=true, tag=bilibili_cc
-
-#B站切区 作者@Nobyda
-#http-response ^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/(pgc\/view\/v\d\/app\/season|x\/offline\/version)\? script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js, requires-body=true, tag=BiliRegion
-#可选, 适用于搜索指定地区的番剧 作者@Nobyda
-#http-request ^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)& script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js, tag=BiliSearch
