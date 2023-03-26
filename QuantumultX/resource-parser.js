@@ -1,5 +1,10 @@
 /** 
-☑️ 资源解析器
+☑️ 资源解析器 ©𝐒𝐡𝐚𝐰𝐧
+----------------------------------------------------------
+🛠 发现 𝐁𝐔𝐆 请反馈: https://t.me/Shawn_Parser_Bot
+⛳️ 关注 🆃🅶 相关频道: https://t.me/QuanX_API
+📖 使用 教程: https://tinyurl.com/2jyygfom
+🗣 🆃🄷🄰🄽🄺🅂 🆃🄾  @Jamie CHIEN, @M**F**, @c0lada, @Peng-YM, @vinewx, @love4taylor, @shadowdogy 
 ----------------------------------------------------------
 🤖 主要功能: 
 ❶ 将其它格式的⟦服务器订阅⟧解析成 𝐐𝐮𝐚𝐧𝐭𝐮𝐦𝐮𝐥𝐭 𝐗 格式
@@ -2755,7 +2760,7 @@ function YAMLFix(cnt){
     cnt = cnt.replace(/{\s*name: /g,"{name: \"").replace(/, server:/g,"\", server:")
     cnt = cnt.replace(/{|}/g,"").replace(/,/g,"\n   ")
   }
-  cnt = cnt.replace(/\n\s*\-\s*\n.*name/g,"\n  - name").replace(/\$|\`/g,"").split("proxy-providers:")[0].split("proxy-groups:")[0].replace(/\"(name|type|server|port|cipher|password|uuid|obfs-uri|alterId|udp)(\"*)/g,"$1")
+  cnt = cnt.replace(/\n\s*\-\s*\n.*name/g,"\n  - name").replace(/\$|\`/g,"").split("proxy-providers:")[0].split("proxy-groups:")[0].replace(/\"(name|type|server|port|cipher|password|uuid|alterId|udp)(\"*)/g,"$1")
     if(Pdbg == 1) {
   $notify("part-fix0:","","part-fix0:\nproxies:\n"+cnt.split("proxies:")[1])}
   // 2023-03-23  👇修正部分类型
