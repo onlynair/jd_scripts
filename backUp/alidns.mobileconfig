@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.6.6.6</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://223.6.6.6/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>Configures device to use AliDNS Encrypted DNS over TLS</string>
+			<key>PayloadDisplayName</key>
+			<string> Ali DNS over HTTPS </string>
+			<key>PayloadIdentifier</key>
+			<string>cc.lxd.alidoh.dnsSettings.managed</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>39e6a9fb-9532-461e-a73d-97e744bbe4e9</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ProhibitDisablement</key>
+			<false/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Adds the Ali DNS over HTTPS to iOS or MacOS</string>
+	<key>PayloadDisplayName</key>
+	<string> Ali DNS over HTTPS </string>
+	<key>PayloadIdentifier</key>
+	<string>cc.lxd.alidoh</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>c9b1404a-a873-4b08-b051-48c6f6c4d6aa</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
