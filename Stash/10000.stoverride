@@ -11,11 +11,11 @@ cron:
 
 tiles:
   - name: Telecom_Auto
-    title: 今日免流信息
-    content: ''
-    backgroundColor: "#0099FF"
-    icon: "dial.max.fill"
-    interval: 600
+    title: '电信余量',
+    content: '',
+    backgroundColor: "#4F9BFA",
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
+    interval: 300
 
 script-providers:
   Telecom_Auto:
