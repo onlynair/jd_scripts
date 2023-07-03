@@ -19,5 +19,5 @@ tiles:
 
 script-providers:
   Telecom_Auto:
-    url: https://raw.githubusercontent.com/onlynair/jd_scripts/master/Stash/telecom.js
+    url: https://github.com/ChinaTelecomOperators/ChinaTelecom/releases/download/Prerelease-Alpha/Tele_Cellular_Auto.js
     interval: 86400
