@@ -11,10 +11,10 @@ cron:
 
 tiles:
   - name: Telecom_Auto
-    title: '电信余量',
-    content: '',
-    backgroundColor: "#4F9BFA",
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
+    title: '电信余量'
+    content: ''
+    backgroundColor: "#4F9BFA"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png"
     interval: 300
 
 script-providers:
