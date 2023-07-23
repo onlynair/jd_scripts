@@ -1,0 +1,9 @@
+#!name=Soul
+#!desc=Krylov
+
+[Script]
+
+Soul-request = type=http-response,pattern=^https:\/\/api-chat\.soulapp\.cn\/chat\/limitInfo,script-path= https://raw.githubusercontent.com/Crazy-Z7/Script/main/Soul.js,requires-body=1,max-size=86400,timeout=60
+
+[MITM]
+hostname = %APPEND% api-chat.soulapp.cn
